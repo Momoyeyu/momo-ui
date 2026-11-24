@@ -1,4 +1,5 @@
 import { useEffect, useRef, type ButtonHTMLAttributes, type ReactNode } from 'react';
+import { buttonAttributes, type ButtonSize, type ButtonVariant } from './control.js';
 
 const paths = {
   back: ['M9 5l-6 6 6 6','M3 11h11a5 5 0 0 1 0 10H5'],
@@ -26,13 +27,14 @@ export function Icon({name, size = 18}: {name: IconName; size?: number}) {
 }
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'primary' | 'outline' | 'ghost' | 'danger';
-  size?: 'sm' | 'md';
+  variant?: ButtonVariant;
+  size?: ButtonSize;
 };
 
 export function Button({variant = 'outline', size = 'md', type = 'button', className, ...props}: ButtonProps) {
-  return <button type={type} {...props} data-variant={variant} data-size={size}
-    className={['momo-button', className].filter(Boolean).join(' ')}/>;
+  const {class: base, ...attributes} = buttonAttributes(variant, size);
+  return <button type={type} {...props} {...attributes}
+    className={[base, className].filter(Boolean).join(' ')}/>;
 }
 
 export function IconButton({label, icon, className, ...props}: Omit<ButtonProps, 'children' | 'aria-label'> & {

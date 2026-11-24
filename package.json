@@ -1,19 +1,36 @@
 {
   "name": "@momoyeyu/momo-ui",
-  "version": "0.1.0",
-  "description": "React interface components and design tokens from momo.",
+  "version": "0.2.0",
+  "description": "React and Vue interface components and shared tokens from momo.",
   "license": "MIT",
   "type": "module",
   "homepage": "https://momoyeyu.github.io/momo-ui/",
-  "repository": {"type":"git","url":"https://github.com/Momoyeyu/momo-ui.git"},
-  "packageManager": "pnpm@12.6.0",
-  "engines": {"node": ">=22.12"},
-  "files": ["lib-dist", "src/ui/styles.css"],
-  "exports": {
-    ".": {"types": "./lib-dist/index.d.ts", "import": "./lib-dist/index.js"},
-    "./styles.css": "./src/ui/styles.css"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Momoyeyu/momo-ui.git"
   },
-  "sideEffects": ["**/*.css"],
+  "packageManager": "pnpm@12.6.0",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "files": [
+    "lib-dist",
+    "src/ui/styles.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./lib-dist/index.d.ts",
+      "import": "./lib-dist/index.js"
+    },
+    "./styles.css": "./src/ui/styles.css",
+    "./vue": {
+      "types": "./lib-dist/vue.d.ts",
+      "import": "./lib-dist/vue.js"
+    }
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "dev": "astro dev",
     "build:lib": "tsc -p tsconfig.lib.json",
@@ -21,7 +38,10 @@
     "preview": "astro preview",
     "prepack": "npm run build:lib"
   },
-  "peerDependencies": {"react":"^19.0.0"},
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "vue": "^3.5.0"
+  },
   "devDependencies": {
     "@astrojs/mdx": "5.0.6",
     "@astrojs/react": "5.0.7",
@@ -30,6 +50,15 @@
     "astro": "6.4.8",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "typescript": "~6.0.2"
+    "typescript": "~6.0.2",
+    "vue": "^3.5.43"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    }
   }
 }

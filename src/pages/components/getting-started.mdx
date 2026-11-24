@@ -7,10 +7,10 @@ import {repo, release} from '../../catalog';
 
 ## 安装
 
-需要 **React 19** 和支持 ESM 的前端构建工具。组件分发在 <a href={repo + '/releases'}>GitHub Releases</a>。
+需要 **React 19** 或 **Vue 3.5**，以及支持 ESM 的前端构建工具。组件分发在 <a href={repo + '/releases'}>GitHub Releases</a>。
 
 ```sh
-pnpm add https://momoyeyu.github.io/momo-ui/packages/momo-ui-0.1.0.tgz
+pnpm add https://momoyeyu.github.io/momo-ui/packages/momo-ui-0.2.0.tgz
 ```
 
 使用 npm 的项目可用同一地址执行 `npm install`。也可<a href={release}>直接下载安装包</a>。
@@ -33,6 +33,22 @@ export function VoiceSettings() {
   );
 }
 ```
+
+## Vue
+
+```vue
+<script setup>
+import {Button, Link} from '@momoyeyu/momo-ui/vue';
+import '@momoyeyu/momo-ui/styles.css';
+</script>
+
+<template>
+  <Button variant="primary" href="/download">下载</Button>
+  <Link href="/docs">阅读文档</Link>
+</template>
+```
+
+两种框架使用同一套颜色变量和按钮变体。Vue 的 `Button` 会根据 `href` 渲染链接或按钮。已有场景需要维持自己的布局和动效时，可用 `variant="bare"` 仅复用控件结构和属性。
 
 ## 本地维护
 

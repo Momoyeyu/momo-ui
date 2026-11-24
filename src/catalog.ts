@@ -1,5 +1,5 @@
 export const repo = 'https://github.com/Momoyeyu/momo-ui';
-export const release = 'https://momoyeyu.github.io/momo-ui/packages/momo-ui-0.1.0.tgz';
+export const release = 'https://momoyeyu.github.io/momo-ui/packages/momo-ui-0.2.0.tgz';
 
 export const groups = [
   {label:'开始使用', pages:[
