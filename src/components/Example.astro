@@ -1,0 +1,7 @@
+---
+const {caption, class: className} = Astro.props;
+---
+<figure class:list={['example', className]}>
+  <div class="example-content" inert><slot/></div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

@@ -1,0 +1,26 @@
+---
+layout: ../../layouts/Docs.astro
+title: 设计基础
+description: momo 深紫灰和柔金界面的色彩、圆角、排版与状态规则。
+---
+## 色彩
+
+<ul className="swatches">
+  {[
+    ['背景','--momo-bg','#18151f'], ['面板','--momo-panel','#28232e'],
+    ['描边','--momo-line','#49414d'], ['正文','--momo-text','#f3ecdf'],
+    ['次要文字','--momo-muted','#b7aebd'], ['重点','--momo-accent','#e7be77'],
+  ].map(([label, token, hex]) => <li key={token} style={{'--sample':hex}}><i aria-hidden="true"/>{label}<br/><code>{token}</code><br/>{hex}</li>)}
+</ul>
+
+柔金用于当前选项、主操作和聚焦边。危险操作使用 `--momo-danger`，并配合操作名称表达含义。可在应用外层覆盖同名 CSS 变量。
+
+## 形状与排版
+
+- 标准控件采用 10 px 圆角（`--momo-radius`），小部件 6 px，大面板 14 px。
+- 界面文字用 `--momo-font`，时间与需要对齐的数值用 `--momo-mono`。组件包使用系统字体栈。
+- 开关、成功和失败等状态使用同一点击区域，减少布局跳动。
+
+## 交互状态
+
+图标按钮带可访问名称。用常见图标表达返回、播放和设置，用简短文案表达低频操作。键盘聚焦始终可见，禁用态同时传达不可操作的语义。文档展示固定状态，组件供应用引入使用。

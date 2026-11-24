@@ -1,0 +1,40 @@
+---
+layout: ../../layouts/Docs.astro
+title: 可搜索选择器
+description: 用输入筛选较长的选项列表，再选定一个值。
+---
+import Example from '../../components/Example.astro';
+import ComboboxExample from '../../components/ComboboxExample.astro';
+
+<Example caption="展开态，选中的时区用金色竖线和勾标识">
+  <ComboboxExample/>
+</Example>
+
+## 用法
+
+```tsx
+import {Combobox} from '@momoyeyu/momo-ui';
+
+<Combobox
+  label="时区"
+  value={zone}
+  options={[
+    {value: '', label: '跟随系统'},
+    {value: 'Asia/Shanghai', label: 'Asia/Shanghai', keywords: '上海 中国'},
+    {value: 'Asia/Tokyo', label: 'Asia/Tokyo', keywords: '东京 日本'},
+  ]}
+  onChange={setZone}
+  searchLabel="搜索时区"
+  emptyLabel="未找到时区"
+/>
+```
+
+| 参数 | 含义 |
+| --- | --- |
+| `label` | 控件的可访问名称 |
+| `value`、`onChange` | 当前选项值和选择回调 |
+| `options` | 值、显示名称和可选搜索别名 |
+| `searchLabel`、`emptyLabel` | 应用提供的搜索标签和空结果文案 |
+| `disabled`、`id` | 可选的禁用状态和触发按钮 ID |
+
+用 Enter、空格或方向键打开，焦点进入搜索框。上下方向键移动高亮，Enter 选择，Esc 关闭并返回触发按钮，Tab 离开控件。弹层会按可用空间调整方向。

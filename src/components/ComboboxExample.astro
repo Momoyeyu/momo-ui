@@ -1,0 +1,24 @@
+---
+import { ClockFace, Icon } from '../ui/primitives';
+import { ChoiceList } from '../ui/combobox';
+
+const {clock = false} = Astro.props;
+const options = [
+  {value:'', label:'跟随系统'},
+  {value:'Asia/Shanghai', label:'Asia/Shanghai'},
+  {value:'Asia/Tokyo', label:'Asia/Tokyo'},
+];
+---
+<div class:list={['picker-specimen', clock && 'clock-specimen']} inert>
+  {clock && <><div class="clock-specimen-header"><Icon name="back" size={16}/><span>时钟</span></div>
+    <ClockFace time="09:41" date="11月24日星期二" dateTime="2026-11-24T09:41:00+08:00"/>
+  </>}
+  <div class="picker-specimen-label">时区</div>
+  <div class="momo-combobox-trigger" aria-expanded="true">
+    <Icon name="globe" size={16}/><span>Asia/Shanghai</span><Icon name="arrow" size={15}/>
+  </div>
+  <div class="momo-combobox-panel specimen-popup">
+    <div class="momo-combobox-search"><Icon name="search" size={15}/><span>搜索时区</span></div>
+    <ChoiceList options={options} value="Asia/Shanghai" active={1} label="时区" emptyLabel="未找到时区"/>
+  </div>
+</div>

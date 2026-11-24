@@ -1,0 +1,30 @@
+---
+import Shell from './Shell.astro';
+import {groups,path} from '../catalog';
+
+const {frontmatter} = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/?$/, '/');
+---
+<Shell title={frontmatter.title} description={frontmatter.description}>
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <nav aria-label="文档导航">
+        {groups.map(group => <div class="nav-group">
+          <p>{group.label}</p>
+          {group.pages.map(page => {
+            const href = path('components/' + page.slug + '/');
+            const current = currentPath === href;
+            return <a href={href} aria-current={current ? 'page' : undefined}>{page.title}</a>;
+          })}
+        </div>)}
+      </nav>
+    </aside>
+    <main class="docs-main" id="main">
+      <header class="doc-heading">
+        <h1>{frontmatter.title}</h1>
+        <p>{frontmatter.description}</p>
+      </header>
+      <article class="prose"><slot/></article>
+    </main>
+  </div>
+</Shell>

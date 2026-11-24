@@ -1,0 +1,26 @@
+---
+layout: ../../layouts/Docs.astro
+title: 表单行
+description: 统一标签、帮助信息和同一行内的控件。
+---
+import Example from '../../components/Example.astro';
+import {Field, Panel, IconButton} from '../../ui/primitives';
+
+<Example caption="同一面板内的标签与控件按列对齐">
+  <div className="example-field"><Panel>
+    <Field label="显示名称" htmlFor="demo-name"><input id="demo-name" defaultValue="momo"/></Field>
+    <Field label="备份"><IconButton icon="download" label="导出"/><IconButton icon="upload" label="导入"/></Field>
+  </Panel></div>
+</Example>
+
+## 用法
+
+```tsx
+import {Field} from '@momoyeyu/momo-ui';
+
+<Field label="显示名称" htmlFor="display-name">
+  <input id="display-name" name="displayName" />
+</Field>
+```
+
+`label` 是可见行标签。单字段用 `htmlFor` 连接控件；一行多个操作时，分别给按钮可访问名称。`aside` 可放辅助节点，`children` 放右侧控件。焦点和校验由具体控件管理。

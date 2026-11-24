@@ -1,0 +1,25 @@
+---
+layout: ../../layouts/Docs.astro
+title: 开关
+description: 立即切换一项二元设置。
+---
+import Example from '../../components/Example.astro';
+import {Switch, Field, Panel} from '../../ui/primitives';
+
+<Example caption="开启、关闭、禁用">
+  <div className="example-field"><Panel>
+    <Field label="显示状态"><Switch label="显示状态" checked={true} onChange={() => {}}/></Field>
+    <Field label="主动回应"><Switch label="主动回应" checked={false} onChange={() => {}}/></Field>
+    <Field label="桌面访问"><Switch label="桌面访问" checked={false} disabled onChange={() => {}}/></Field>
+  </Panel></div>
+</Example>
+
+## 用法
+
+```tsx
+import {Switch} from '@momoyeyu/momo-ui';
+
+<Switch label="显示状态" checked={enabled} onChange={setEnabled} />
+```
+
+`checked` 传入当前状态，`onChange` 接收新值。`disabled` 禁止操作，`label` 为必填的可访问名称。键盘用 Tab 聚焦，空格或 Enter 切换。

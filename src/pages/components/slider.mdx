@@ -1,0 +1,24 @@
+---
+layout: ../../layouts/Docs.astro
+title: 滑条
+description: 调整 0–100 的连续百分比。
+---
+import Example from '../../components/Example.astro';
+import {Slider, Field, Panel} from '../../ui/primitives';
+
+<Example caption="正常与禁用；两种状态都显示保存的百分比">
+  <div className="example-field"><Panel>
+    <Field label="语音"><Slider label="语音" value={70} onChange={() => {}}/></Field>
+    <Field label="音乐"><Slider label="音乐" value={35} disabled onChange={() => {}}/></Field>
+  </Panel></div>
+</Example>
+
+## 用法
+
+```tsx
+import {Slider} from '@momoyeyu/momo-ui';
+
+<Slider label="语音" value={volume} onChange={setVolume} disabled={muted} />
+```
+
+`value` 范围为 0–100，`onChange` 接收新数值。滑条支持方向键和 Home、End。静音禁用滑条时可以继续传入保存的音量。

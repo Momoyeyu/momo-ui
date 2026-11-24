@@ -1,0 +1,22 @@
+---
+layout: ../../layouts/Docs.astro
+title: 时钟表盘
+description: 在手机等紧凑界面中显示已经格式化的时间与日期。
+---
+import Example from '../../components/Example.astro';
+import {ClockFace} from '../../ui/primitives';
+import {path} from '../../catalog';
+
+<Example caption="等宽时间数字和次要层级的日期">
+  <div className="example-clock"><ClockFace time="09:41" date="11月24日星期二" dateTime="2026-11-24T09:41:00+08:00"/></div>
+</Example>
+
+## 用法
+
+```tsx
+import {ClockFace} from '@momoyeyu/momo-ui';
+
+<ClockFace time="09:41" date="11月24日星期二" dateTime="2026-11-24T09:41:00+08:00" />
+```
+
+`time` 和 `date` 接收应用格式化的字符串，`dateTime` 提供机器可读的 ISO 值。时区、语言、定时更新和持久化由应用决定。momo 手机使用<a href={path('components/combobox/')}>可搜索选择器</a>切换时区。

@@ -1,0 +1,30 @@
+---
+import {path, repo} from '../catalog';
+import '../ui/styles.css';
+import '../styles/site.css';
+
+const {title, description} = Astro.props;
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content={description}/>
+    <title>{title ? title + ' · momo-ui' : 'momo-ui'}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a href={path()} class="wordmark" aria-label="momo-ui 首页"><i aria-hidden="true"></i>momo<span>-ui</span></a>
+        <nav aria-label="主要导航">
+          <a href={path('components/getting-started/')}>文档</a>
+          <a href={repo}>GitHub</a>
+        </nav>
+      </div>
+    </header>
+    <slot/>
+    <footer class="site-footer"><span>momo-ui</span><a href={repo + '/blob/main/LICENSE'}>MIT</a></footer>
+  </body>
+</html>

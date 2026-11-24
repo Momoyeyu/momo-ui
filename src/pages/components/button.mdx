@@ -1,0 +1,36 @@
+---
+layout: ../../layouts/Docs.astro
+title: 按钮
+description: 统一主操作、图标操作与危险操作。
+---
+import Example from '../../components/Example.astro';
+import {Button, IconButton} from '../../ui/primitives';
+
+<Example caption="实心主操作、描边、无框图标、危险操作和禁用">
+  <div className="example-row">
+    <Button variant="primary">保存</Button>
+    <Button>取消</Button>
+    <IconButton icon="settings" label="设置" variant="ghost"/>
+    <IconButton icon="trash" label="删除" variant="danger"/>
+    <Button disabled>暂不可用</Button>
+  </div>
+</Example>
+
+## 用法
+
+```tsx
+import {Button, IconButton} from '@momoyeyu/momo-ui';
+
+<Button type="submit" variant="primary">保存</Button>
+<IconButton icon="settings" label="配置语音" onClick={openVoiceSettings} />
+```
+
+| 参数 | 含义 |
+| --- | --- |
+| `variant` | `primary`、`outline`（默认）、`ghost` 或 `danger` |
+| `size` | `md`（默认）或 `sm` |
+| `type` | 默认 `button`，提交表单时设为 `submit` |
+| `IconButton.label` | 必填，为纯图标操作提供名称 |
+| `IconButton.icon` | 从 `IconName` 中选择图标 |
+
+支持 `disabled`、`onClick` 和 `aria-pressed` 等按钮属性。聚焦后按 Enter 或空格触发。

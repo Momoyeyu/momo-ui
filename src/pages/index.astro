@@ -1,0 +1,40 @@
+---
+import Shell from '../layouts/Shell.astro';
+import ComboboxExample from '../components/ComboboxExample.astro';
+import {groups, path} from '../catalog';
+import {Icon} from '../ui/primitives';
+const components = groups[1].pages;
+---
+<Shell description="momo 的 React 组件、设计基础和使用文档。">
+  <main id="main" class="landing">
+    <section class="home-intro">
+      <div class="home-copy">
+        <h1>momo-ui</h1>
+        <p>momo 的界面组件库。用同一套组件构建游戏里的设置、弹窗与手机应用。</p>
+        <div class="home-actions">
+          <a class="momo-button" data-variant="primary" href={path('components/getting-started/')}>安装与使用</a>
+          <a class="momo-button" href="#components">浏览组件</a>
+        </div>
+      </div>
+      <figure class="home-figure">
+        <div class="home-specimen"><ComboboxExample clock/></div>
+        <figcaption>游戏时钟的时区选择</figcaption>
+      </figure>
+    </section>
+
+    <section class="catalog" id="components" aria-labelledby="catalog-title">
+      <h2 id="catalog-title">组件</h2>
+      <ul>
+        {components.map(component => <li><a href={path('components/' + component.slug + '/')}>
+          <span><strong>{component.title}</strong><span>{component.description}</span></span>
+          <span class="catalog-arrow" aria-hidden="true">↗</span>
+        </a></li>)}
+      </ul>
+    </section>
+
+    <section class="foundation-link">
+      <Icon name="settings" size={21}/>
+      <div><h2><a href={path('components/foundation/')}>设计基础</a></h2><p>从游戏界面提取的色彩、排版与控件状态。</p></div>
+    </section>
+  </main>
+</Shell>
