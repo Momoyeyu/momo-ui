@@ -7,7 +7,7 @@ momo 的 React 组件、设计 token 和静态文档。组件可以用于 React 
 ## 使用
 
 ```sh
-pnpm add https://github.com/Momoyeyu/momo-ui/releases/download/v0.1.0/momo-ui-0.1.0.tgz
+pnpm add https://momoyeyu.github.io/momo-ui/packages/momo-ui-0.1.0.tgz
 ```
 
 ```tsx

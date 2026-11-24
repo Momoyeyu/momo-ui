@@ -17,7 +17,7 @@ a:focus-visible { outline: 2px solid var(--momo-accent); outline-offset: 4px; }
 .site-footer { min-height: 74px; display: flex; align-items: center; justify-content: space-between; margin-block-start: 64px; color: var(--momo-muted); border-top: 1px solid var(--momo-line); font: 0.82rem var(--momo-mono); }
 .site-footer a { text-decoration: none; }
 .home-intro { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(32px,8vw,110px); align-items: center; min-height: 510px; padding-block: 52px 42px; border-bottom: 1px solid var(--momo-line); }
-.home-copy h1 { margin: 0 0 16px; font: 550 clamp(3.3rem,9vw,7.6rem)/.98 var(--momo-mono); letter-spacing: -.09em; }
+.home-copy h1 { margin: 0 0 16px; font: 550 clamp(3.3rem,9vw,7.6rem)/.98 var(--momo-mono); letter-spacing: -.06em; }
 .home-copy p { max-width: 25em; margin: 22px 0 30px; color: var(--momo-muted); font-size: clamp(1.05rem,2vw,1.25rem); }
 .home-actions { display:flex; flex-wrap:wrap; gap:12px; }
 .home-actions a { padding-inline: 16px; min-height: 42px; text-decoration:none; }
