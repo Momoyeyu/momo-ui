@@ -1,5 +1,5 @@
 export const repo = 'https://github.com/Momoyeyu/momo-ui';
-export const release = 'https://momoyeyu.github.io/momo-ui/packages/momo-ui-0.2.0.tgz';
+export const release = 'https://momoyeyu.github.io/momo-ui/packages/momo-ui-0.3.0.tgz';
 
 export const groups = [
   {label:'开始使用', pages:[
@@ -7,6 +7,7 @@ export const groups = [
     {slug:'foundation', title:'设计基础', description:'色彩、圆角、排版和交互状态。'},
   ]},
   {label:'组件', pages:[
+    {slug:'layout', title:'布局与容器', description:'容器、纵向堆叠、横向操作组、网格和基础内容块。'},
     {slug:'button', title:'按钮', description:'主操作、图标操作与危险操作。'},
     {slug:'field', title:'表单行', description:'在统一的表单行里组织标签和控件。'},
     {slug:'switch', title:'开关', description:'显示并切换立即生效的二元状态。'},

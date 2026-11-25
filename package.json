@@ -1,6 +1,6 @@
 {
   "name": "@momoyeyu/momo-ui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "React and Vue interface components and shared tokens from momo.",
   "license": "MIT",
   "type": "module",

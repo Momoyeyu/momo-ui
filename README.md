@@ -7,7 +7,7 @@ momo 的 React 组件、设计 token 和静态文档。组件可以用于 React 
 ## 使用
 
 ```sh
-pnpm add https://momoyeyu.github.io/momo-ui/packages/momo-ui-0.2.0.tgz
+pnpm add https://momoyeyu.github.io/momo-ui/packages/momo-ui-0.3.0.tgz
 ```
 
 ```tsx
@@ -15,7 +15,7 @@ import {Button, ClockFace, Combobox} from '@momoyeyu/momo-ui';
 import '@momoyeyu/momo-ui/styles.css';
 ```
 
-Vue 项目从 `@momoyeyu/momo-ui/vue` 导入 `Button` 和 `Link`，样式入口相同。
+Vue 项目从 `@momoyeyu/momo-ui/vue` 导入布局组件及 `Button`、`Link`，样式入口相同。
 
 ## 维护
 
