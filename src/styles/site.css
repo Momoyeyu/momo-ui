@@ -31,14 +31,6 @@ a:focus-visible { outline: 2px solid var(--momo-accent); outline-offset: 4px; }
     linear-gradient(90deg, transparent 96%, rgb(183 174 189 / 10%) 96%) 0 0/24px 24px,
     radial-gradient(ellipse at 62% 40%, rgb(234 182 84 / 11%), transparent 67%), var(--momo-input);
 }
-.picker-specimen { width: min(100%, 255px); }
-.clock-specimen { background: var(--momo-panel); padding: 15px 16px 15px; border: 1px solid var(--momo-line-strong); border-radius:19px; box-shadow: var(--momo-shadow); }
-.clock-specimen-header { display: grid; align-items:center; grid-template-columns:16px 1fr 16px; font-weight:600; text-align:center; margin-block-end: 6px; }
-.clock-specimen-header svg { color:var(--momo-accent); }
-.clock-specimen .momo-clock-face { padding-block: 13px 14px; margin-block-end: 10px; }
-.picker-specimen-label { color:var(--momo-muted); margin-block-end:5px; font-size:.8rem; }
-.specimen-popup { inset:auto; position: relative; margin-block-start: 5px; }
-.specimen-popup .momo-combobox-search { font-size:.8rem; }
 .catalog { padding-block:35px 14px; }
 .catalog h2 { margin:0 0 9px; font-size:1.6rem; }
 .catalog ul { display:grid; grid-template-columns: 1fr 1fr; column-gap:44px; margin:0; padding:0; list-style:none; }
@@ -53,7 +45,8 @@ a:focus-visible { outline: 2px solid var(--momo-accent); outline-offset: 4px; }
 .foundation-link p { margin:3px 0 0; color:var(--momo-muted); font-size:.86rem; }
 
 .docs-layout { display:grid; grid-template-columns:180px minmax(0,760px); gap:clamp(24px,7vw,82px); align-items:start; padding-block-start:46px; }
-.docs-sidebar { position:sticky; top:20px; }
+.docs-mobile-nav { display: none; }
+.docs-sidebar { position:sticky; top:20px; max-height:calc(100vh - 40px); overflow-y:auto; scrollbar-width:thin; padding-bottom:8px; }
 .nav-group + .nav-group { margin-top:19px; }
 .nav-group p { margin:0 0 6px 12px; color:var(--momo-muted); font-size:.78rem; }
 .nav-group a { display:block; padding:6px 10px; border-inline-start:2px solid transparent; text-decoration:none; font-size:.86rem; }
@@ -72,11 +65,11 @@ a:focus-visible { outline: 2px solid var(--momo-accent); outline-offset: 4px; }
 .prose table :is(th, td) { padding:8px 11px; border-bottom:1px solid var(--momo-line); text-align:start; }
 .prose table th { color:var(--momo-accent); }
 .example { margin:18px 0; border:1px solid var(--momo-line); border-radius:var(--momo-radius-lg); background: var(--momo-input); overflow:hidden; }
-.example-content { padding:clamp(16px,4vw,28px); }
+.example-content { padding:clamp(16px,4vw,28px); min-width:0; }
+.example:has(astro-island) { overflow:visible; }
 .example figcaption { padding:7px 15px; border-top:1px solid var(--momo-line); color:var(--momo-muted); font-size:.81rem; }
 .example-row { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
 .example-field { width:min(100%, 470px); margin-inline:auto; }
-.example-clock { width:min(100%, 255px); margin-inline:auto; }
 .swatches { display:grid; grid-template-columns:repeat(auto-fit,minmax(106px,1fr)); gap:10px; padding:0; margin:0; list-style:none; }
 .swatches li { border:1px solid var(--momo-line); border-radius:var(--momo-radius); padding:7px; color:var(--momo-muted); overflow-wrap:anywhere; font-size:.8rem; }
 .swatches i { display:block; height:40px; margin-bottom:5px; border:1px solid var(--momo-line); border-radius:5px; background:var(--sample); }
@@ -88,9 +81,36 @@ a:focus-visible { outline: 2px solid var(--momo-accent); outline-offset: 4px; }
   .home-specimen { min-height:358px; }
   .catalog ul { grid-template-columns:1fr; }
   .docs-layout { display:block; padding-block-start:21px; }
-  .docs-sidebar { position:static; margin-block-end:22px; padding-block-end: 12px; border-bottom:1px solid var(--momo-line); }
+  .docs-sidebar { display:none; }
+  .docs-mobile-nav { display:block; margin-block-end:22px; border-bottom:1px solid var(--momo-line); }
+  .docs-mobile-nav summary { padding-block:7px 12px; color:var(--momo-muted); cursor:pointer; }
+  .docs-mobile-nav summary:focus-visible { outline:2px solid var(--momo-accent); outline-offset:2px; }
+  .docs-mobile-nav nav { padding-block:4px 12px; }
   .nav-group { display:flex; flex-wrap:wrap; gap:3px; }
   .nav-group p { flex-basis:100%; margin:0 0 3px; }
   .nav-group + .nav-group { margin-top:8px; }
   .nav-group a { padding:4px 7px; }
 }
+
+.component-framework, .demo-label { color: var(--momo-muted); font-size: .82rem; margin: 0 0 8px; }
+.component-framework { font-family: var(--momo-mono); }
+.demo-secondary { margin-top: 18px; }
+.demo-control { width: min(100%, 420px); margin-inline: auto; }
+.demo-feedback { margin: 14px 0 0; color: var(--momo-muted); font-size: .83rem; }
+.demo-stack { display: grid; gap: 12px; }
+.demo-setting { display: flex; gap: 12px; align-items:center; justify-content:space-between; padding-block:8px; }
+.demo-panel-text { margin: 0; }
+.demo-stage { border:1px dashed var(--momo-line-strong); border-radius:var(--momo-radius); padding-block:10px; }
+.demo-block { padding:8px 10px; border-radius:var(--momo-radius-sm); background:var(--momo-panel); border:1px solid var(--momo-line); text-align:center; font-size:.85rem; }
+.demo-narrow { width:min(100%, 195px); }
+.demo-cluster-flow { overflow:auto; }
+.demo-cluster-flow > * { flex:none; }
+.demo-pair { display:grid; gap:16px; grid-template-columns: repeat(auto-fit,minmax(min(100%,185px),1fr)); }
+.demo-surfaces { display:grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,90px),1fr)); gap:10px; }
+.demo-icons { margin:0; padding:0; list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(76px,1fr)); gap:8px; }
+.demo-icons > li { display:grid; justify-items:center; gap:8px; padding:12px 5px; border:1px solid var(--momo-line); border-radius:var(--momo-radius); color:var(--momo-accent); }
+.hero-demo { width:min(100%, 340px); padding:24px; background:var(--momo-panel); border:1px solid var(--momo-line); border-radius:var(--momo-radius-lg); box-shadow:var(--momo-shadow); }
+
+.example a.momo-button { text-decoration: none; }
+.example a.demo-bare-link { color: var(--momo-muted); text-decoration: none; }
+.example a.demo-bare-link:hover { text-decoration: underline; }

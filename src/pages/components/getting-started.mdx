@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/Docs.astro
 title: 安装与使用
-description: 在 React 项目中安装 momo-ui，并引入组件与样式。
+description: 在 React 或 Vue 项目中安装 momo-ui，并引入组件与样式。
 ---
 import {repo, release} from '../../catalog';
 
@@ -60,4 +60,4 @@ pnpm dev
 pnpm build
 ```
 
-组件文档保存在 `src/pages/components/`。新增组件时同步更新入口导出、MDX 文档和导航目录。
+安装与设计说明使用 MDX，单组件页面从 `src/component-docs.ts` 生成。新增公开组件时同步更新 API 说明、示例和目录。

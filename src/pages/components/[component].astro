@@ -1,0 +1,69 @@
+---
+import {Code} from 'astro:components';
+import Docs from '../../layouts/Docs.astro';
+import Example from '../../components/Example.astro';
+import LiveDemo from '../../components/LiveDemo';
+import StaticDemo from '../../components/StaticDemo';
+import VueExample from '../../components/VueExample.astro';
+import {components} from '../../catalog';
+import {interactiveNames, type InteractiveName} from '../../component-docs';
+
+export function getStaticPaths() {
+  return components.map(component => ({params:{component: component.slug}, props:{component}}));
+}
+
+const {component} = Astro.props;
+const {name, description, frameworks, props, notes, usage} = component;
+const live = interactiveNames.includes(name as InteractiveName);
+const nativeLink = name === 'Link';
+const vueOnly = frameworks === 'vue';
+const withState = usage.includes('useState(');
+const [stateCode, markup] = usage.split('\n\n');
+const sharedButtons = ['Dialog', 'Panel'].includes(name) ? ', Button' : '';
+const usageWithState = withState
+  ? 'export function Example() {\n  ' + stateCode + '\n\n  return (\n    <>\n'
+    + markup.split('\n').map(line => '      ' + line).join('\n') + '\n    </>\n  );\n}'
+  : usage;
+const reactCode = (withState ? "import { useState } from 'react';\n" : '')
+  + 'import { ' + name + sharedButtons + " } from '@momoyeyu/momo-ui';\nimport '@momoyeyu/momo-ui/styles.css';\n\n"
+  + usageWithState;
+const vueUsage = name === 'Button'
+  ? '<Button variant="primary" href="/download">下载</Button>'
+  : usage.replace(/(\w+)=\{([^{}]+)\}/g, ':$1="$2"');
+---
+<Docs frontmatter={{title:name, description}}>
+  <p class="component-framework">{frameworks === 'both' ? 'React · Vue' : vueOnly ? 'Vue' : 'React'}</p>
+  <h2 id="example">示例</h2>
+  {live ? (
+    <Example interactive caption="可交互示例">
+      <LiveDemo name={name as InteractiveName} client:load/>
+    </Example>
+  ) : nativeLink ? (
+    <Example interactive caption="强调样式与 bare 样式">
+      <VueExample name={name}/>
+    </Example>
+  ) : (
+    <Example>
+      <StaticDemo name={name}/>
+    </Example>
+  )}
+  {name === 'Button' && <Example interactive caption="Vue 的链接模式">
+    <VueExample name={name}/>
+  </Example>}
+  <h2 id="usage">用法</h2>
+  {frameworks !== 'vue' && <Code lang="tsx" theme="github-dark-dimmed"
+    code={reactCode}/>}
+  {frameworks !== 'react' && <>
+    {frameworks === 'both' && <h3>Vue</h3>}
+    <Code lang="vue" theme="github-dark-dimmed"
+      code={"<script setup>\nimport { " + name + " } from '@momoyeyu/momo-ui/vue';\nimport '@momoyeyu/momo-ui/styles.css';\n</script>\n\n<template>\n" + vueUsage + '\n</template>'}/>
+  </>}
+  <h2 id="api">API</h2>
+  {props?.length ? <table>
+    <thead><tr><th>参数</th><th>类型</th><th>默认值</th><th>说明</th></tr></thead>
+    <tbody>{props.map(([label, type, initial, help]) => <tr>
+      <td><code>{label}</code></td><td>{type}</td><td>{initial}</td><td>{help}</td>
+    </tr>)}</tbody>
+  </table> : null}
+  {notes && <p>{notes}</p>}
+</Docs>

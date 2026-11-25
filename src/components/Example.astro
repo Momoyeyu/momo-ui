@@ -1,7 +1,7 @@
 ---
-const {caption, class: className} = Astro.props;
+const {caption, interactive = false, class: className} = Astro.props;
 ---
 <figure class:list={['example', className]}>
-  <div class="example-content" inert><slot/></div>
+  <div class="example-content" inert={!interactive}><slot/></div>
   {caption && <figcaption>{caption}</figcaption>}
 </figure>

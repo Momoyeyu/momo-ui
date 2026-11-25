@@ -34,9 +34,10 @@
   "scripts": {
     "dev": "astro dev",
     "build:lib": "tsc -p tsconfig.lib.json",
-    "build": "pnpm build:lib && astro build",
+    "build": "pnpm build:lib && astro build && pnpm test:docs",
     "preview": "astro preview",
-    "prepack": "npm run build:lib"
+    "prepack": "npm run build:lib",
+    "test:docs": "node --test tests/component-docs.test.mjs"
   },
   "peerDependencies": {
     "react": "^19.0.0",

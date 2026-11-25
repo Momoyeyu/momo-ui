@@ -1,21 +1,22 @@
+import {componentSlug, docs} from './component-docs';
+
 export const repo = 'https://github.com/Momoyeyu/momo-ui';
 export const release = 'https://momoyeyu.github.io/momo-ui/packages/momo-ui-0.3.0.tgz';
 
+export const components = docs.map(doc => ({...doc, title:doc.name, slug:componentSlug(doc.name)}));
+const group = (label: string, names: string[]) => ({
+  label,
+  pages: names.map(name => components.find(component => component.name === name)!),
+});
+
 export const groups = [
   {label:'开始使用', pages:[
-    {slug:'getting-started', title:'安装与使用', description:'把 momo 的界面组件带进 React 项目。'},
-    {slug:'foundation', title:'设计基础', description:'色彩、圆角、排版和交互状态。'},
+    {slug:'getting-started', title:'安装与使用'},
+    {slug:'foundation', title:'设计基础'},
   ]},
-  {label:'组件', pages:[
-    {slug:'layout', title:'布局与容器', description:'容器、纵向堆叠、横向操作组、网格和基础内容块。'},
-    {slug:'button', title:'按钮', description:'主操作、图标操作与危险操作。'},
-    {slug:'field', title:'表单行', description:'在统一的表单行里组织标签和控件。'},
-    {slug:'switch', title:'开关', description:'显示并切换立即生效的二元状态。'},
-    {slug:'slider', title:'滑条', description:'调节百分比并即时看到数值。'},
-    {slug:'combobox', title:'可搜索选择器', description:'从长列表中查找并选择一个值。'},
-    {slug:'panel', title:'面板与弹窗', description:'组织信息，或临时聚焦一项操作。'},
-    {slug:'clock-face', title:'时钟表盘', description:'显示调用方格式化后的时间和日期。'},
-  ]},
+  group('操作与输入', ['Button','IconButton','Link','Switch','Slider','Field','Combobox']),
+  group('基础布局', ['Container','Stack','Cluster','Grid','Surface','Divider']),
+  group('内容与反馈', ['SectionHeading','Panel','Dialog','EmptyState','ClockFace','Icon']),
 ];
 
 export const path = (relative = '') => import.meta.env.BASE_URL.replace(/\/$/, '') + '/' + relative;

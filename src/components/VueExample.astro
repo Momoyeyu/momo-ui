@@ -1,0 +1,21 @@
+---
+import {createSSRApp, h} from 'vue';
+import {renderToString} from 'vue/server-renderer';
+import {Button, Link} from '../ui/vue';
+
+const {name} = Astro.props;
+const preview = createSSRApp({
+  render:() => name === 'Link'
+    ? h('div', {class:'example-row'}, [
+        h(Link, {href:'#link-preview-target'}, () => '强调链接'),
+        h(Link, {href:'#link-preview-target', variant:'bare', class:'demo-bare-link'}, () => '裸链接'),
+      ])
+    : h('div', {class:'example-row'}, [
+        h(Button, {href:'#link-preview-target', variant:'primary'}, () => '按钮样式链接'),
+        h(Button, {href:'#link-preview-target', variant:'bare', class:'demo-bare-link'}, () => 'bare 链接'),
+      ]),
+});
+const html = await renderToString(preview);
+---
+<Fragment set:html={html}/>
+<p class="demo-feedback" id="link-preview-target" tabindex="-1">链接跳转目标</p>

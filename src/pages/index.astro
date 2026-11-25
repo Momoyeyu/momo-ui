@@ -1,9 +1,8 @@
 ---
 import Shell from '../layouts/Shell.astro';
-import ComboboxExample from '../components/ComboboxExample.astro';
-import {groups, path} from '../catalog';
+import LiveDemo from '../components/LiveDemo';
+import {components, path} from '../catalog';
 import {Icon} from '../ui/primitives';
-const components = groups[1].pages;
 ---
 <Shell description="momo 的 React 组件、设计基础和使用文档。">
   <main id="main" class="landing">
@@ -17,8 +16,8 @@ const components = groups[1].pages;
         </div>
       </div>
       <figure class="home-figure">
-        <div class="home-specimen"><ComboboxExample clock/></div>
-        <figcaption>游戏时钟的时区选择</figcaption>
+        <div class="home-specimen"><div class="hero-demo"><LiveDemo name="Slider" client:load/></div></div>
+        <figcaption>Slider · 语音音量</figcaption>
       </figure>
     </section>
 
